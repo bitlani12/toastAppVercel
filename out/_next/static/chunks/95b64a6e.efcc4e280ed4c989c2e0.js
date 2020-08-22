@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[12],{IdFE:function(t,n,a){"use strict";a.d(n,"a",(function(){return r}));var o=a("Lnxd"),r=function(t){return Object(o.a)({tag:"svg",attr:{viewBox:"0 0 512 512"},child:[{tag:"path",attr:{d:"M128 192l128 128 128-128z"}}]})(t)};r.displayName="IoMdArrowDropdown"}}]);

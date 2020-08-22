@@ -1,0 +1,154 @@
+[1mdiff --git a/src/components/common/billingCard.js b/src/components/common/billingCard.js[m
+[1mdeleted file mode 100644[m
+[1mindex 1be81e3..0000000[m
+[1m--- a/src/components/common/billingCard.js[m
+[1m+++ /dev/null[m
+[36m@@ -1,30 +0,0 @@[m
+[31m-import React from 'react';[m
+[31m-import { FlexRow, FlexBetween } from '../../ui/Flex';[m
+[31m-import Veg from './Veg';[m
+[31m-const BillingCard = (props) => {[m
+[31m-  const i = 1;[m
+[31m-  return ([m
+[31m-    <div>[m
+[31m-      <FlexBetween className="p10">[m
+[31m-        <FlexRow>[m
+[31m-          <img src="/static/bsz69iom.png" alt="not avaliable" />[m
+[31m-          <div className="ml10">{props.orderData.id_name}</div>[m
+[31m-        </FlexRow>[m
+[31m-      </FlexBetween>[m
+[31m-      {props.billing_data.order_details[props.orderData.id].map((e) => ([m
+[31m-        <FlexBetween className="p10">[m
+[31m-          <FlexRow>[m
+[31m-            {e.item_type === 'non-veg' ? ([m
+[31m-              <Veg color={'#964122'} />[m
+[31m-            ) : ([m
+[31m-              <Veg color={'#007436'} />[m
+[31m-            )}[m
+[31m-            <div className="ml10">{e.item_name}</div>[m
+[31m-          </FlexRow>[m
+[31m-          <FlexRow>₹{e.item_price}</FlexRow>[m
+[31m-        </FlexBetween>[m
+[31m-      ))}[m
+[31m-    </div>[m
+[31m-  );[m
+[31m-};[m
+[31m-export default BillingCard;[m
+[1mdiff --git a/src/page-components/AddOns/AddOns.js b/src/page-components/AddOns/AddOns.js[m
+[1mindex 931daca..8b69554 100644[m
+[1m--- a/src/page-components/AddOns/AddOns.js[m
+[1m+++ b/src/page-components/AddOns/AddOns.js[m
+[36m@@ -10,6 +10,10 @@[m [mimport { FlexBetween, FlexRow } from 'ui/Flex';[m
+ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';[m
+ import BottomDrawer from 'ui/BottomDrawer';[m
+ import RadioButton from './../../components/common/radiobutton';[m
+[32m+[m[32mimport { withRouter } from 'next/router';[m
+[32m+[m[32mimport { connect } from 'react-redux';[m
+[32m+[m[32mimport { bindActionCreators } from 'redux';[m
+[32m+[m[32mimport { add_item } from '../../redux/actions/orderAction';[m
+ import Drawer, {[m
+   DrawerContainer,[m
+   MainContentContainer,[m
+[36m@@ -27,6 +31,11 @@[m [mconst AddOns = (props) => {[m
+   const handleaddon = (event, toggleDrawer) => {[m
+     event.stopPropagation();[m
+   };[m
+[32m+[m
+[32m+[m[32m  const unchecked = (ifduplicate) => {[m
+[32m+[m[32m    console.log('this is uncheck');[m
+[32m+[m[32m    set_addon_list(addon_list.filter((e, i) => i !== ifduplicate));[m
+[32m+[m[32m  };[m
+   const handlechecked = (addon, limit) => {[m
+     const addon_list2 = {[m
+       addon_category_id: addon.addon_category_id,[m
+[36m@@ -34,34 +43,23 @@[m [mconst AddOns = (props) => {[m
+       addon_price: addon.addon_price[0].price,[m
+       addon_name: addon.addon_name,[m
+     };[m
+[31m-    const checkDup = addon_list;[m
+[31m-    const ifduplicate = checkDup.map((i) => {[m
+[31m-      //   const addon_list = [...addon_list];[m
+[31m-      if (i.addon_id === addon.addon_id) {[m
+[31m-        console.log(addon_list, '2 +++++');[m
+[31m-[m
+[31m-        addon_list.splice(ifduplicate, 1);[m
+[31m-        console.log(addon_list, '+++++');[m
+[31m-        return set_addon_list(addon_list);[m
+[31m-      }[m
+[32m+[m[32m    const ifduplicate = addon_list.findIndex((i) => {[m
+[32m+[m[32m      return i.addon_id === addon.addon_id;[m
+     });[m
+     console.log(ifduplicate, addon_list, 'this is duplicate');[m
+[31m-    // if (ifduplicate >= 0) {[m
+[31m-    //   console.log(addon_list, 'this is list of add on 3');[m
+[31m-[m
+[31m-    //   console.log(addon_list, 'this is list of add on 2');[m
+[31m-[m
+[31m-    //   console.log(addon_list, 'this is list of add on');[m
+[31m-    // }[m
+[31m-    const lookup = addon_list.filter((i) => {[m
+[31m-      return i.addon_category_id === addon_list2.addon_category_id;[m
+[31m-    });[m
+[31m-    console.log(lookup.length, limit, 'this is length');[m
+[31m-    if (limit <= lookup.length) {[m
+[31m-      return null;[m
+[32m+[m[32m    if (ifduplicate >= 0) {[m
+[32m+[m[32m      unchecked(ifduplicate);[m
+[32m+[m[32m    } else {[m
+[32m+[m[32m      const lookup = addon_list.filter((i) => {[m
+[32m+[m[32m        return i.addon_category_id === addon_list2.addon_category_id;[m
+[32m+[m[32m      });[m
+[32m+[m[32m      console.log(lookup.length, limit, 'this is length');[m
+[32m+[m[32m      if (limit <= lookup.length) {[m
+[32m+[m[32m        return null;[m
+[32m+[m[32m      }[m
+[32m+[m[32m      // if(lookup.length)[m
+[32m+[m[32m      else set_addon_list([...addon_list, addon_list2]);[m
+     }[m
+[31m-    // if(lookup.length)[m
+[31m-    else set_addon_list([...addon_list, addon_list2]);[m
+   };[m
+   const handlesizeType = (e, size) => {[m
+     e.stopPropagation();[m
+[36m@@ -79,6 +77,15 @@[m [mconst AddOns = (props) => {[m
+ [m
+     return lastPrice + itemSize.item_price;[m
+   };[m
+[32m+[m[32m  const handleTray = () => {[m
+[32m+[m[32m    const order_details = {[m
+[32m+[m[32m      item_id: val_data.item_category_id,[m
+[32m+[m[32m      qty: 1,[m
+[32m+[m[32m      item_size: itemSize.item_size,[m
+[32m+[m[32m      addons: addon_list,[m
+[32m+[m[32m    };[m
+[32m+[m[32m    props.add_item(order_details);[m
+[32m+[m[32m  };[m
+   return ([m
+     <Layout>[m
+       <Drawer position="bottom" size={100}>[m
+[36m@@ -351,7 +358,11 @@[m [mconst AddOns = (props) => {[m
+                       >[m
+                         Total {totalPrice()}[m
+                       </div>[m
+[31m-                      <div style={{ color: 'white' }} className="tl">[m
+[32m+[m[32m                      <div[m
+[32m+[m[32m                        style={{ color: 'white' }}[m
+[32m+[m[32m                        className="tl"[m
+[32m+[m[32m                        onClick={handleTray}[m
+[32m+[m[32m                      >[m
+                         Add to tray (1/2)[m
+                       </div>[m
+                       <div style={{ color: 'white' }}>[m
+[36m@@ -495,4 +506,11 @@[m [mconst AddOns = (props) => {[m
+     </Layout>[m
+   );[m
+ };[m
+[31m-export default AddOns;[m
+[32m+[m
+[32m+[m[32mconst mapStateToProps = (state) => ({[m
+[32m+[m[32m  addItem: state.orderReducer.addItem,[m
+[32m+[m[32m});[m
+[32m+[m[32mconst mapDispatchToProps = (dispatch) => ({[m
+[32m+[m[32m  add_item: bindActionCreators(add_item, dispatch),[m
+[32m+[m[32m});[m
+[32m+[m[32mexport default connect(mapStateToProps, mapDispatchToProps)(AddOns);[m

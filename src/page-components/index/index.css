@@ -1,0 +1,50 @@
+.combos {
+  padding: 0.5rem 0 1rem 1rem;
+}
+.combos .packages {
+  overflow: scroll;
+  margin-top: 1rem;
+}
+.combos .packages .package {
+  display: inline-block;
+  width: 38vw;
+  margin-right: 1rem;
+  padding-bottom: 1rem;
+}
+.combos .packages .package .image-holder {
+  width: 38vw;
+  height: 6rem;
+  position: inherit;
+  z-index: -1;
+}
+.combos .packages .package .image-holder img {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.combos .packages .package .content {
+  padding: 0.5rem;
+  border: 1px solid #f1f1f1;
+  border-top: 0;
+}
+.combos .packages .package .content h5 {
+  font-size: 1rem;
+}
+.combos .packages .package .content p {
+  font-size: 0.8rem;
+}
+.combos .packages .package .content .booking-details .price {
+  font-size: 1.3rem;
+  margin: 0;
+}
+.combos .packages .package .content .booking-details button {
+  font-size: 1rem;
+  background: #11b1b7;
+  color: white;
+  padding: 0rem 1rem;
+  border: none;
+}
