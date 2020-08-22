@@ -72,7 +72,12 @@ const ReviewPlaceOrder = React.memo((props) => {
         // Router.push('/order_success');
       };
       setTimeout(() => {
-        props.placeOrder_action(Cookie.get('qr_code'), newAddItem,textBox,  callBack);
+        props.placeOrder_action(
+          Cookie.get('qr_code'),
+          newAddItem,
+          textBox,
+          callBack
+        );
       }, 20);
     } else {
       Router.push('/billing_details');
@@ -113,7 +118,7 @@ const ReviewPlaceOrder = React.memo((props) => {
               />
             </FlexBetween>
             {addItem.length !== 0 && (
-              <CardLayout >
+              <CardLayout>
                 <div className="p10">
                   <FlexRow>
                     {/* <Avatar /> */}
@@ -129,13 +134,13 @@ const ReviewPlaceOrder = React.memo((props) => {
                     />
                   ))}
                 </div>
-                <div style={{padding:10}}>
-                <Input
-                value={textBox}
-                placeholder="Any Request? Customize your dish."
-                onchange={(value) => setTextBox(value)}
-              />
-              </div>
+                <div style={{ padding: 10 }}>
+                  <Input
+                    value={textBox}
+                    placeholder="Any Request? Customize your dish."
+                    onchange={(value) => setTextBox(value)}
+                  />
+                </div>
               </CardLayout>
             )}
             {totalPastQty !== 0 && (
@@ -172,14 +177,14 @@ const ReviewPlaceOrder = React.memo((props) => {
             </Link>
           </div>
           <div onClick={placeOrder}>
-          {addItem.length !== 0 ?
+            {/* {addItem.length !== 0 ?
             <ButtonBottomFix
               title={'PLACE ORDER'}
             />
             :
             <ButtonBottomFix
               title={'CHECKOUT'}
-            />}
+            />} */}
           </div>
         </div>
       ) : (

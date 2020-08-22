@@ -74,7 +74,7 @@ function FrontPage({
 
   // const menus = menu_data.menu.menu;
   const onchange_menu = (menu_type) => {
-    changerefIndex(0)
+    changerefIndex(0);
     set_selected_menu(menu_type);
   };
 
@@ -82,7 +82,6 @@ function FrontPage({
   ////////////////////////////////
   const myRef = [];
   const scrollToRef = (i, e) => {
-
     if (e === true && selected_menu !== 'Special') {
       setTimeout(() => {
         myRef[i].scrollIntoView();
@@ -92,7 +91,7 @@ function FrontPage({
 
   return (
     <Layout>
-      <Header simple={simple} />
+      {/* <Header simple={simple} /> */}
       <MenuSelector
         selected=""
         menus={menus}
@@ -106,7 +105,7 @@ function FrontPage({
           marginBottom: selected_menu !== 'Special' ? -40 : 35,
           padding: selected_menu !== 'Special' ? '0 0 80px 0rem ' : '7px 1rem',
           background: selected_menu !== 'Special' ? 'lightgray' : '',
-          minHeight: '100vh'
+          minHeight: '100vh',
         }}
       >
         {inside_menu.map((val, i) => (
@@ -134,17 +133,17 @@ function FrontPage({
             {menus[selected_menu][val].map((val_data, i) => {
               return filter.filter_veg === true ? (
                 val_data.item_type === 'veg' &&
-                (val_data.contains_egg === true ? (
-                  filter.contains_egg && (
-                    <MenuCard
-                      val_data={val_data}
-                      selected_menu={selected_menu}
-                      data={menu_data.menu}
-                      key={val_data.item_id}
-                      softReload={softReload}
-                    />
-                  )
-                ) : (
+                  (val_data.contains_egg === true ? (
+                    filter.contains_egg && (
+                      <MenuCard
+                        val_data={val_data}
+                        selected_menu={selected_menu}
+                        data={menu_data.menu}
+                        key={val_data.item_id}
+                        softReload={softReload}
+                      />
+                    )
+                  ) : (
                     <MenuCard
                       val_data={val_data}
                       selected_menu={selected_menu}
@@ -154,14 +153,14 @@ function FrontPage({
                     />
                   ))
               ) : (
-                  <MenuCard
-                    val_data={val_data}
-                    selected_menu={selected_menu}
-                    data={menu_data.menu}
-                    softReload={softReload}
-                    key={val_data.item_id}
-                  />
-                );
+                <MenuCard
+                  val_data={val_data}
+                  selected_menu={selected_menu}
+                  data={menu_data.menu}
+                  softReload={softReload}
+                  key={val_data.item_id}
+                />
+              );
             })}
           </div>
         ))}
@@ -174,7 +173,7 @@ function FrontPage({
         selected_menu={selected_menu}
         refIndex={refIndex}
       >
-        <SetFilterIcon >
+        <SetFilterIcon>
           <img src="/static/bx-filter-alt.svg" />
         </SetFilterIcon>
       </MenuFilter>
