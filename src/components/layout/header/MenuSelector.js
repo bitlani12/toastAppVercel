@@ -6,7 +6,7 @@ import { concat } from 'lodash';
 
 const BackgroundImage = styled.div`
   background-image: ${(props) => `url('${props.img}')`};
-  height: 130px;
+  height: 160px;
   /* background-position: center; */
   display: block;
   background-position: center center;

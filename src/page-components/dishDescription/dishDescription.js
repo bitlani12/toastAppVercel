@@ -37,14 +37,14 @@ const DishDescription = React.memo((props) => {
   console.log(props.load_item_review, 'this isisisisis');
   return (
     // <BottomDrawer>
-    <div style={{overflowY:'hidden'}}>
+    <div style={{ overflowY: 'hidden' }}>
       {handle_initial_selected && (
         <div style={{ width: '100%' }}>
           {/* <SliderCommon imge={selected_menu_data.item_image_url} /> */}
 
           <SetItemImage
             img={selected_menu_data.item_image_url}
-            height={'33vh'}
+            height={'46vh'}
             radiusNone={true}
           />
           <FullCard style={{ position: 'relative' }}>
@@ -55,11 +55,11 @@ const DishDescription = React.memo((props) => {
                 <FlexBetween>
                   <FlexRow style={{ marginBottom: 10 }}>
                     {selected_menu_data.item_type === 'nonveg' ||
-                    selected_menu_data.item_type === 'non-veg' ? (
-                      <Veg color={'#be0000'} />
-                    ) : (
-                      <Veg color={'#007436'} />
-                    )}
+                      selected_menu_data.item_type === 'non-veg' ? (
+                        <Veg color={'#be0000'} />
+                      ) : (
+                        <Veg color={'#007436'} />
+                      )}
                     <TitleCenter
                       style={{
                         marginTop: 0,
@@ -75,8 +75,8 @@ const DishDescription = React.memo((props) => {
                   </FlexRow>
                 </FlexBetween>
                 <div>
-                  
-                  <h5 style={{ color: '#999999', marginTop: -10, fontSize:15 }} className="h">
+
+                  <h5 style={{ color: '#999999', marginTop: -10, fontSize: 15 }} className="h">
                     {selected_menu_data.item_description}
                   </h5>
                 </div>
@@ -98,22 +98,22 @@ const DishDescription = React.memo((props) => {
                 </FlexRow>
               </FlexBetween>
               <hr className="line" />
-              <SubTitle>Select Size</SubTitle>
-              <p className="p">Select your preferred size</p>
-              {selected_menu_data.item_price_details.map((val, i ) => (
-                i === 0 &&   
-                    <FlexBetween style={{ marginBottom: 10 }}>
-                      <FlexRow>{val.item_size}</FlexRow>
-                      <FlexRow>
-                        <FlexRow style={{ marginRight: 10 }}>
-                          ₹ {val.item_price}
-                        </FlexRow>
-                        <AddItem val_data={selected_menu_data} />
-                        {/* <AddSidebutton title="add" /> */}
-                      </FlexRow>
-                    </FlexBetween>
-                  )
-                
+              <SubTitle>Available Sizes</SubTitle>
+              {/* <p className="p">Select your preferred size</p> */}
+              {selected_menu_data.item_price_details.map((val, i) => (
+                i === 0 &&
+                <FlexBetween style={{ marginBottom: 10 }}>
+                  <FlexRow style={{ fontSize: 16 }}>{val.item_size}</FlexRow>
+                  <FlexRow>
+                    <FlexRow style={{ marginRight: 10, fontSize: 16 }}>
+                      ₹ {val.item_price}
+                    </FlexRow>
+                    {/* <AddItem val_data={selected_menu_data} /> */}
+                    {/* <AddSidebutton title="add" /> */}
+                  </FlexRow>
+                </FlexBetween>
+              )
+
               )}
 
               {/* <div style={{ marginTop: 10, marginBottom: 10 }}>
@@ -125,10 +125,10 @@ const DishDescription = React.memo((props) => {
               </FlexRow>
             </FlexBetween>
           </div> */}
-              <hr className="line" />
+              {/* <hr className="line" />
               <FlexBetween>
                 <SubTitle>Top Reviews</SubTitle>
-              </FlexBetween>
+              </FlexBetween> */}
               {/* <FlexBetween>
               <FlexRow>
                 <img src="/static/t5ldz341.png" alt="not available"></img>
@@ -143,7 +143,7 @@ const DishDescription = React.memo((props) => {
             <FlexBetween>
               <div style={{ marginLeft: 25 }}>So fresh, so healthy!👏</div>
             </FlexBetween> */}
-              {props.load_item_review === false ? (
+              {/* {props.load_item_review === false ? (
                 review.length !== 0 ? (
                   review.map((e) => (
                     <div>
@@ -178,13 +178,13 @@ const DishDescription = React.memo((props) => {
                                 e.item_rating === 1
                                   ? '003-sick.svg'
                                   : e.item_rating === 2
-                                  ? '005-arrogant.svg'
-                                  : e.item_rating === 3
-                                  ? '002-confused.svg'
-                                  : e.item_rating === 4
-                                  ? '004-happy.svg'
-                                  : e.item_rating === 5 && '001-happy-1.svg'
-                              }`}
+                                    ? '005-arrogant.svg'
+                                    : e.item_rating === 3
+                                      ? '002-confused.svg'
+                                      : e.item_rating === 4
+                                        ? '004-happy.svg'
+                                        : e.item_rating === 5 && '001-happy-1.svg'
+                                }`}
                               alt="not available"
                             ></img>
                           </FlexRow>
@@ -208,20 +208,20 @@ const DishDescription = React.memo((props) => {
                     </div>
                   ))
                 ) : (
-                  <div style={{ padding: 29, textAlign: 'center' }}>
-                    No Reviews Found
-                  </div>
-                )
+                    <div style={{ padding: 29, textAlign: 'center' }}>
+                      No Reviews Found
+                    </div>
+                  )
               ) : (
-                <div style={{ padding: 20, textAlign: 'center' }}>
-                  <ClipLoader
-                    // css={override}
-                    size={33}
-                    color={'#123abc'}
-                    loading={props.load_item_review}
-                  />
-                </div>
-              )}
+                  <div style={{ padding: 20, textAlign: 'center' }}>
+                    <ClipLoader
+                      // css={override}
+                      size={33}
+                      color={'#123abc'}
+                      loading={props.load_item_review}
+                    />
+                  </div>
+                )} */}
 
               {/* <div style={{ marginTop: 10 }}>
               <FlexBetween>

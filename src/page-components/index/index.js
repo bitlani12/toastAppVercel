@@ -133,17 +133,17 @@ function FrontPage({
             {menus[selected_menu][val].map((val_data, i) => {
               return filter.filter_veg === true ? (
                 val_data.item_type === 'veg' &&
-                  (val_data.contains_egg === true ? (
-                    filter.contains_egg && (
-                      <MenuCard
-                        val_data={val_data}
-                        selected_menu={selected_menu}
-                        data={menu_data.menu}
-                        key={val_data.item_id}
-                        softReload={softReload}
-                      />
-                    )
-                  ) : (
+                (val_data.contains_egg === true ? (
+                  filter.contains_egg && (
+                    <MenuCard
+                      val_data={val_data}
+                      selected_menu={selected_menu}
+                      data={menu_data.menu}
+                      key={val_data.item_id}
+                      softReload={softReload}
+                    />
+                  )
+                ) : (
                     <MenuCard
                       val_data={val_data}
                       selected_menu={selected_menu}
@@ -153,14 +153,14 @@ function FrontPage({
                     />
                   ))
               ) : (
-                <MenuCard
-                  val_data={val_data}
-                  selected_menu={selected_menu}
-                  data={menu_data.menu}
-                  softReload={softReload}
-                  key={val_data.item_id}
-                />
-              );
+                  <MenuCard
+                    val_data={val_data}
+                    selected_menu={selected_menu}
+                    data={menu_data.menu}
+                    softReload={softReload}
+                    key={val_data.item_id}
+                  />
+                );
             })}
           </div>
         ))}
@@ -177,7 +177,7 @@ function FrontPage({
           <img src="/static/bx-filter-alt.svg" />
         </SetFilterIcon>
       </MenuFilter>
-      <SelectedItem />
+      {/* <SelectedItem /> */}
       <ServiceAssistant />
       <Codepopup />
 

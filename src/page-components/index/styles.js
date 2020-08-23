@@ -17,7 +17,7 @@ export const Outer = styled(O)`
 
 export const SetFilterIcon = styled.div`
   position: fixed;
-  bottom: 65px;
+  bottom: 25px;
   right: 15px;
   background: transparent linear-gradient(172deg, #36c0db 0%, #007991 100%) 0%
     0% no-repeat padding-box;

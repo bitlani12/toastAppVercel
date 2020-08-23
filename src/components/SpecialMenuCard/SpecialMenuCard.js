@@ -135,8 +135,8 @@ const SpeacialMenuCard = React.memo((props) => {
             ) : val_data.item_type === 'veg' ? (
               <Veg color="#007436" />
             ) : (
-              <Veg color="#be0000" />
-            )}
+                  <Veg color="#be0000" />
+                )}
             {/* <div
                   style={{
                     border: 'solid #007436 1px',
@@ -169,10 +169,10 @@ const SpeacialMenuCard = React.memo((props) => {
                 </small>
               </div> */}
           <div className="special-item">
-            <div style={{ minWidth: 35,  }}>
+            <div style={{ minWidth: 35, }}>
               ₹ {val_data.item_price_details[0].item_price}
             </div>{' '}
-            <AddItem handleToggle={props.handleToggle} val_data={val_data} />
+            {/* <AddItem handleToggle={props.handleToggle} val_data={val_data} /> */}
           </div>
         </div>
       </CardLayout>
@@ -219,12 +219,12 @@ const FoodList = React.memo((props) => {
             <FlexRow style={{ alignItems: 'start' }}>
               {val_data.contains_egg === true ? (
                 (console.log('this is egg  contains'),
-                (<Veg color="#654321" />))
+                  (<Veg color="#654321" />))
               ) : val_data.item_type === 'veg' ? (
                 <Veg color="#007436" />
               ) : (
-                <Veg color="#be0000" />
-              )}
+                    <Veg color="#be0000" />
+                  )}
               <div style={{ marginLeft: 8, fontWeight: 600, marginTop: -3 }}>
                 {val_data.item_name}
               </div>
@@ -278,10 +278,10 @@ const FoodList = React.memo((props) => {
                   height: 30,
                 }}
               >
-                <AddItem
+                {/* <AddItem
                   handleToggle={props.handleToggle}
                   val_data={val_data}
-                />
+                /> */}
               </div>
               {/* <p>description</p> */}
             </div>
@@ -299,7 +299,7 @@ const FoodList = React.memo((props) => {
           padding: 0.5rem 0 1rem 1rem;
         }
         .image-holder {
-          width: 38vw;
+          // width: 38vw;
           position: inherit;
           overflow: hidden;
           height:104px;

@@ -7,6 +7,7 @@ const BackgroundImageFood = styled.div`
   width: 100%;
   /* background-position: center; */
   display: block;
+  width:${(props) => props.width};
   background-position: center center;
   margin: 0 auto;
   background-size: cover;
@@ -83,10 +84,10 @@ const SetItemImage = (props) => {
       {
         props.exceptSpecial ? (
           imageAvaileable ? (
-            <BackgroundImageFood img={props.img} />
+            <BackgroundImageFood img={props.img} width={"38vw"} />
           ) : (
-            <BackgroundImageFood img={'/static/fooditem_placeholder.png'} />
-          )
+              <BackgroundImageFood img={'/static/fooditem_placeholder.png'} width={"0vw"} />
+            )
         ) : imageAvaileable ? (
           <BackgroundImage
             img={props.img}
@@ -94,12 +95,12 @@ const SetItemImage = (props) => {
             radiusNone={props.radiusNone}
           />
         ) : (
-          <BackgroundImage
-            img={'/static/fooditem_placeholder.png'}
-            height={props.height}
-            radiusNone={props.radiusNone}
-          />
-        )
+              <BackgroundImage
+                img={'/static/fooditem_placeholder.png'}
+                height={props.height}
+                radiusNone={props.radiusNone}
+              />
+            )
 
         // <BackgroundImage img={'/static/001-happy-1.svg'} />
       }
