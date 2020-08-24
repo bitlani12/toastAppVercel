@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const BackgroundImageFood = styled.div`
   background-image: ${(props) => `url('${props.img}')`};
-  height: 100%;
+  height: 101%;
   width: 100%;
   /* background-position: center; */
   display: block;

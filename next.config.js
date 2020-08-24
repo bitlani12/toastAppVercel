@@ -14,4 +14,11 @@ module.exports = withCSS({
     });
     return config;
   },
+  env: {
+    JWT_SECRET: 'teststagejwttoken'
+  },
 });
+
+// module.exports = {
+
+// }

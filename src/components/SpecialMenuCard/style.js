@@ -18,7 +18,6 @@ export const CardLayout = styled.div`
   moz-border: solid #70707029 1px;
   -webkit-border: solid #70707029 1px;
   box-shadow: 0px 3px 6px #0000001a;
-  border: 1px solid #bfbfbf80;
   border-radius: 10px;
 `;
 

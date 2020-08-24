@@ -202,7 +202,7 @@ const FoodList = React.memo((props) => {
   };
   return (
     <CardLayout style={{ width: '91%', background: 'white' }}>
-      <FlexRow>
+      <FlexRow style={{ margin: "-1px" }}>
         <div className="image-holder">
           <SetItemImage img={val_data.item_image_url} exceptSpecial={true} />
           {/* <BackgroundImageFood  /> */}
@@ -248,17 +248,17 @@ const FoodList = React.memo((props) => {
               </div>
             </FlexRow>
           </FlexBetween>
-          <FlexBetween style={{ width: '100%', padding: '0px 10px 10px 10px' }}>
+          <FlexRow style={{ width: '100%', padding: '0px 10px 10px 10px', alignItems: "end" }}>
             <div
               style={{
-                marginTop: 21,
+
                 alignItems: 'center',
               }}
+            // className="module overflow"
             >
-              {/* <img src="/static/001-happy-1.png" alt="Klarna logo" />
-              <small style={{ marginLeft: 8, fontSize: 12 }}>
-                {val_data.reviews_count} reviews
-              </small> */}
+              <span className="truncaa">
+                {val_data.item_description}
+              </span>
             </div>
             {/* <p>description</p> */}
             {/* </div> */}
@@ -285,7 +285,7 @@ const FoodList = React.memo((props) => {
               </div>
               {/* <p>description</p> */}
             </div>
-          </FlexBetween>
+          </FlexRow>
 
           {/* <div>
             <FlexBetween>
@@ -295,6 +295,26 @@ const FoodList = React.memo((props) => {
         </div>
         <style>
           {`
+
+
+.truncaa {
+  display: block;
+  /* Fallback for non-webkit */
+  display: -webkit-box;
+  max-width: 400px;
+  height: 42px;
+  /* Fallback for non-webkit */
+  margin: 0 auto;
+  font-size: 15px;
+  line-height: 1.4;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
         .combos {
           padding: 0.5rem 0 1rem 1rem;
         }
@@ -352,8 +372,38 @@ const FoodList = React.memo((props) => {
           border: none;
          
         }
-       
-        
+        .overflow {
+          --max-lines: 2;
+          position: relative;
+          max-height: calc(var(--lh) * var(--max-lines));
+          overflow: hidden;
+          padding-right: 1rem; /* space for ellipsis */
+        }
+        .overflow::before {
+          position: absolute;
+          content: "...";
+        /*   inset-block-end: 0;
+          inset-inline-end: 0; */
+          bottom: 0;
+          right: 0;
+        }
+        .overflow::after {
+          content: "";
+          position: absolute;
+        /*   inset-inline-end: 0; */
+          right: 0;
+          width: 1rem;
+          height: 1rem;
+          background: white;
+        }
+        .module {
+          width: 100%;
+          margin: 0 0 1em 0;
+          overflow: hidden;
+        }       
+        .module div {
+          margin: 0;
+        }         
         `}
         </style>
       </FlexRow>
