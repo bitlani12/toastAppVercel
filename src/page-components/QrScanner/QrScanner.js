@@ -18,7 +18,7 @@ class QrScanner extends Component {
     this.handleScan = this.handleScan.bind(this);
   }
   async componentDidMount() {
-    // this.generateToken()
+    this.generateToken()
     // let result = await import('react-qr-reader');
     // QrReader = result.QrReader;
     // this.setState({
