@@ -127,7 +127,7 @@ const SpeacialMenuCard = React.memo((props) => {
               alignItems: 'baseline',
             }}
           >
-            <Title style={{ fontSize: 13, height: 35 }}>
+            <Title style={{ fontSize: 13, height: 35 }} className="truncaa" >
               {val_data.item_name}
             </Title>
             {val_data.contains_egg === true ? (
@@ -188,8 +188,22 @@ const SpeacialMenuCard = React.memo((props) => {
           margin-bottom: 9px;
           }
 
+          .truncaa {
+            display: block;
+            /* Fallback for non-webkit */
+            display: -webkit-box;
+            max-width: 400px;
+            height: 42px;
+            /* Fallback for non-webkit */
+            font-size: 15px;
+            line-height: 1.4;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
       
-        }`}</style>
+        `}</style>
     </div>
   );
 });
