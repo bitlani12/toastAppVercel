@@ -46,3 +46,4 @@ QrScan.getInitialProps = async (ctx) => {
   // return { check };
 };
 export default QrScan;
+
