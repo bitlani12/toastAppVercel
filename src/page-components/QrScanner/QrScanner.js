@@ -20,9 +20,9 @@ class QrScanner extends Component {
   }
   async componentDidMount() {
     this.generateToken()
-    const data = 'http://localhost:3001/view_catalogue?qr_code=WBR2f%2BgdUps3kFJ1E70I0J2PAoJFF1RzfCsrnE7PiVfucv%2BD5%2FywGco8YvWyQ4eJ%2F7QQwve9GU7deQqF7GgkkQ%3D%3D'
+    const data = 'http://localhost:3000/view_catalogue?qr_code=WBR2f%2BgdUps3kFJ1E70I0J2PAoJFF1RzfCsrnE7PiVfucv%2BD5%2FywGco8YvWyQ4eJ%2F7QQwve9GU7deQqF7GgkkQ%3D%3D'
     // Router.replace(`${data}`)
-    document.location.href = `${data}`
+
     // let result = await import('react-qr-reader');
     // QrReader = result.QrReader;
     // this.setState({
@@ -63,10 +63,9 @@ class QrScanner extends Component {
       qrsuccess = true;
     };
     console.log(qrsuccess, 'this is falsexxxxxxxx');
-    if (data !== null && this.props.loading.loading === false) {
-      console.log(data, 'this is code ');
-      Router.redirect(`${data}`)
-      // this.props.scanqr_action(data);
+    if (data !== null) {
+      document.location.href = `${data}`
+      this.props.scanqr_action(data);
     }
   }
   handleError(err) {

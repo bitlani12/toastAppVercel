@@ -21,21 +21,18 @@ import {
   getTableCode_action,
 } from '../redux/actions/orderAction';
 import { auth, check_qr_not_avail } from '../utils/auth';
-import Cookie from 'js-cookie';
+import cookie from 'js-cookie';
 import Router from 'next/router';
 let check;
-
+var jwt = require('jsonwebtoken');
 class Cmp extends React.Component {
   static getInitialProps({ reduxStore, req }) {
-    check = process.browser ? <div>hiii</div> : <div>hello</div>;
+    check = process.browser ? <div></div> : <div>hello</div>;
     return {};
   }
+
   componentWillMount() {
-    const c_id = Cookie.get('customer_id');
-    const o_id = Cookie.get('order_id');
-    const token = Cookie.get('token');
-    const qr_code = Cookie.get('qr_code');
-    const join_code = Cookie.get('join_code');
+    this.generateToken()
     const code = this.props.router.query.qr_code
     // console.log(code, "this is code coe")
     // const data = Cookie.get(code);
@@ -47,11 +44,34 @@ class Cmp extends React.Component {
     // this.props.getBilling_action(o_id, c_id, token);
     this.props.scanqr_action(code)
   }
+  generateToken = () => {
+    //1. Dont use password and other sensitive fields
+    //2. Use fields that are useful in other parts of the     
+    //app/collections/models
+
+    const user = {
+      name: "",
+      username: "",
+      _id: 1
+    }
+    var u = {
+      name: user.name,
+      username: user.username,
+      // admin: user.admin,
+      _id: user._id.toString(),
+      // image: user.image
+    };
+    let token;
+    return token = jwt.sign(u, process.env.JWT_SECRET, {
+      expiresIn: 60 * 60 * 24 // expires in 24 hours
+    }),
+      cookie.set('token', token, { expires: 365 });
+    // console.log(token)
+  }
   render() {
     return (
       <div>
         {check}
-hiiii
         {this.props.loading && this.props.menu_data.menu === undefined ? (
           <div></div>
         ) : (
@@ -63,9 +83,9 @@ hiiii
 }
 
 Cmp.getInitialProps = async (ctx) => {
-  const token = auth(ctx);
+  // const token = auth(ctx);
   // const qrc_check = check_qr_not_avail(ctx);
-  return { token };
+  // return { token };
 };
 
 const mapStateToProps = (state) => ({
