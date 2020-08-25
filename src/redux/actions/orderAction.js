@@ -367,8 +367,8 @@ export const scanqr_action = (code) => {
   return (dispatch) => {
     dispatch(handleLoader(true));
     RestClient.restCall(
-      Connection.getBaseUrl() + `/table/`,
-      '/jview_catalogue/menu',
+      Connection.getBaseUrl() + '/jview_catalogue/menu',
+      '',
       paramsData,
       // 'customer_id'
     )
