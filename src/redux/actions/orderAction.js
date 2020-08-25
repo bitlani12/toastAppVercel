@@ -360,7 +360,6 @@ export const zomatoGold_action = (params) => {
 };
 
 export const scanqr_action = (code) => {
-  console.log(name, 'this is name');
   let paramsData = {
     qr_code: code,
   };
@@ -395,7 +394,7 @@ export const scanqr_action = (code) => {
             expires: 365,
           });
           cookie.set('qr_code', code, { expires: 365 });
-          Router.push('/');
+          // Router.push('/');
           /////////// code for special menu update///////////////////
           const menus = res.data.menu;
           console.log(res.data.menu, 'this is is x ===== 2222');
