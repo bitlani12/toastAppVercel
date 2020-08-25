@@ -81,7 +81,7 @@ export const getItemReview_action = (
 
     RestClient.getCall(
       Connection.getBaseUrl() +
-        `/reviews/${customer_id}/item/${item_id}?start=${start}&limit=${limit}`,
+      `/reviews/${customer_id}/item/${item_id}?start=${start}&limit=${limit}`,
       token
     )
       .then(async (res) => {
@@ -403,7 +403,6 @@ export const scanqr_action = (code) => {
           let y = {};
           list2.map((val) => {
             const inside_menu = Object.keys(res.data.menu[val]);
-
             inside_menu.map((inside) => {
               let x = res.data.menu[val][inside].filter((val_data, i) => {
                 return val_data.is_special === true;
@@ -656,7 +655,7 @@ export const userReview_action = (file, pic) => {
     const token = cookie.get('token');
     fetch(
       Connection.getBaseUrl() +
-        `/reviews/${customer_id}/orders/${cookie.get('order_id')}`,
+      `/reviews/${customer_id}/orders/${cookie.get('order_id')}`,
       {
         method: 'POST',
         timeout: 1000 * 1 * 60,
