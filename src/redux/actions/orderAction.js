@@ -369,7 +369,7 @@ export const scanqr_action = (code) => {
     RestClient.restCall(
       Connection.getBaseUrl() + `/table/`,
       '/jview_catalogue/menu',
-      // paramsData,
+      paramsData,
       // 'customer_id'
     )
       .then(async (res, status) => {

@@ -256,7 +256,7 @@ const FoodList = React.memo((props) => {
               }}
             // className="module overflow"
             >
-              <span className="truncaa">
+              <span className="truncaa" style={{ fontWeight: 400 }}>
                 {val_data.item_description}
               </span>
             </div>
