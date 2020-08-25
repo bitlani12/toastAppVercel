@@ -11,9 +11,10 @@ const QrScanner = dynamic(
   { ssr: false }
 );
 // import QrReader from '';
+// var jwt = require('jsonwebtoken');
 class QrScan extends Component {
   componentDidMount() {
-    this.generateToken()
+    // this.generateToken()
     if (process.browser) {
       window.onpopstate = (e) => {
         this.setState({ isToggle: true });
@@ -22,31 +23,6 @@ class QrScan extends Component {
       };
       history.pushState(null, null, location.href);
     }
-  }
-
-  generateToken = () => {
-    //1. Dont use password and other sensitive fields
-    //2. Use fields that are useful in other parts of the     
-    //app/collections/models
-
-    const user = {
-      name: "mukesh",
-      username: "mukesh",
-      _id: 1
-    }
-    var u = {
-      name: user.name,
-      username: user.username,
-      // admin: user.admin,
-      _id: user._id.toString(),
-      // image: user.image
-    };
-    let token;
-    return token = jwt.sign(u, process.env.JWT_SECRET, {
-      expiresIn: 60 * 60 * 24 // expires in 24 hours
-    }),
-      cookie.set('token', token, { expires: 365 });
-    // console.log(token)
   }
   render() {
     const previewStyle = {
@@ -65,8 +41,8 @@ class QrScan extends Component {
 }
 QrScan.getInitialProps = async (ctx) => {
   console.log('this is ctx');
-  const token = auth(ctx);
-  const check = check_qr(ctx);
-  return { check };
+  // const token = auth(ctx);
+  // const check = check_qr(ctx);
+  // return { check };
 };
 export default QrScan;

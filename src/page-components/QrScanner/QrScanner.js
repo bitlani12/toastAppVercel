@@ -3,6 +3,8 @@ import QrReader from 'react-qr-reader';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { scanqr_action } from 'redux/actions/orderAction';
+var jwt = require('jsonwebtoken');
+import cookie from 'js-cookie'
 // let QrReader = '';
 class QrScanner extends Component {
   constructor(props) {
@@ -16,11 +18,37 @@ class QrScanner extends Component {
     this.handleScan = this.handleScan.bind(this);
   }
   async componentDidMount() {
+    // this.generateToken()
     // let result = await import('react-qr-reader');
     // QrReader = result.QrReader;
     // this.setState({
     //   appIsMounted: true,
     // });
+  }
+
+  generateToken = () => {
+    //1. Dont use password and other sensitive fields
+    //2. Use fields that are useful in other parts of the     
+    //app/collections/models
+
+    const user = {
+      name: "mukesh",
+      username: "mukesh",
+      _id: 1
+    }
+    var u = {
+      name: user.name,
+      username: user.username,
+      // admin: user.admin,
+      _id: user._id.toString(),
+      // image: user.image
+    };
+    let token;
+    return token = jwt.sign(u, process.env.JWT_SECRET, {
+      expiresIn: 60 * 60 * 24 // expires in 24 hours
+    }),
+      cookie.set('token', token, { expires: 365 });
+    // console.log(token)
   }
   handleScan(data) {
     // this.setState({
