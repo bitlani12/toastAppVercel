@@ -5,7 +5,7 @@ import Router from 'next/router';
 import { handleLoader } from './app';
 import { ToastContainer, toast } from 'react-toastify';
 // import nextcookie from 'next-cookies';
-import cookie from 'js-cookie'
+import cookie from 'js-cookie';
 
 export const sendOtp_action = (params) => {
   return (dispatch) => {
@@ -81,7 +81,7 @@ export const getItemReview_action = (
 
     RestClient.getCall(
       Connection.getBaseUrl() +
-      `/reviews/${customer_id}/item/${item_id}?start=${start}&limit=${limit}`,
+        `/reviews/${customer_id}/item/${item_id}?start=${start}&limit=${limit}`,
       token
     )
       .then(async (res) => {
@@ -238,7 +238,7 @@ export const placeOrder_action = (code, params, textBox, callBack) => {
     let paramsData = {
       qr_code: code,
       order_details: params,
-      customize_item: textBox
+      customize_item: textBox,
     };
     RestClient.restCall(
       Connection.getBaseUrl() + `/orders/`,
@@ -369,7 +369,7 @@ export const scanqr_action = (code) => {
     RestClient.restCall(
       Connection.getBaseUrl() + '/view_catalogue/menu',
       '',
-      paramsData,
+      paramsData
       // 'customer_id'
     )
       .then(async (res, status) => {
@@ -389,46 +389,46 @@ export const scanqr_action = (code) => {
             dispatch(handleLoader(false));
           }, 1000);
         } else {
-          if (res.data.status !== 'failure') {
-            cookie.set('order_id', res.data.order_id, { expires: 365 });
-            cookie.set('join_code', res.data.table_joining_code, { expires: 365 });
-            cookie.set('qr_code', code, { expires: 365 });
-            Router.push('/');
-            /////////// code for special menu update///////////////////
-            const menus = res.data.menu.menu;
-            console.log(res.data.menu.menu, 'this is is x ===== 2222');
-            let list2 = Object.keys(menus);
-            let y = {};
-            list2.map((val) => {
-              const inside_menu = Object.keys(res.data.menu.menu[val]);
+          // if (res.data.status !== 'failure') {
+          cookie.set('order_id', res.data.order_id, { expires: 365 });
+          cookie.set('join_code', res.data.table_joining_code, {
+            expires: 365,
+          });
+          cookie.set('qr_code', code, { expires: 365 });
+          Router.push('/');
+          /////////// code for special menu update///////////////////
+          const menus = res.data.menu;
+          console.log(res.data.menu, 'this is is x ===== 2222');
+          let list2 = Object.keys(menus);
+          let y = {};
+          list2.map((val) => {
+            const inside_menu = Object.keys(res.data.menu[val]);
 
-              inside_menu.map((inside) => {
-                let x = res.data.menu.menu[val][inside].filter(
-                  (val_data, i) => {
-                    return val_data.is_special === true;
-                  }
-                );
-                if (x.length > 0) {
-                  y = { ...y, [inside]: x };
-                }
+            inside_menu.map((inside) => {
+              let x = res.data.menu[val][inside].filter((val_data, i) => {
+                return val_data.is_special === true;
               });
+              if (x.length > 0) {
+                y = { ...y, [inside]: x };
+              }
             });
-            console.log(y, 'this is y');
-            res.data = {
-              ...res.data,
-              menu: {
-                ...res.data.menu,
-                menu: { ...res.data.menu.menu, Special: y },
-              },
-            };
-            ///////////////////////////////////////////////////////////////////
+          });
+          console.log(y, 'this is y');
+          res.data = {
+            ...res.data,
+            menu: {
+              ...res.data.menu,
+              menu: { ...res.data.menu, Special: y },
+            },
+          };
+          ///////////////////////////////////////////////////////////////////
 
-            dispatch({ type: types.MENU_DATA, data: res.data });
-            // setTimeout(() => {
-            //   dispatch(handleLoader(false));
-            // }, 1000);
-            //   navigateToOtpVerification(params, screenname_redirect);
-          }
+          dispatch({ type: types.MENU_DATA, data: res.data });
+          // setTimeout(() => {
+          //   dispatch(handleLoader(false));
+          // }, 1000);
+          //   navigateToOtpVerification(params, screenname_redirect);
+          // }
 
           //       Dialog(res.message, [
           //         { text: 'OK', onPress: () => console.log('OK Pressed') },
@@ -441,6 +441,7 @@ export const scanqr_action = (code) => {
           //     if (cb) {
           //       cb(res);
         }
+        dispatch(handleLoader(false));
       })
       //   .then(() => cookie.get('customer_id') && Router.push('/qr_scanner')) // eslint-disable-next-line
       .catch((e) => {
@@ -536,15 +537,15 @@ export const jointable_action = (code, qr_code, type) => {
           Router.push('/');
 
           /////////// code for special menu update///////////////////
-          const menus = res.data.menu.menu;
-          console.log(res.data.menu.menu, 'this is is x ===== 2222');
+          const menus = res.data.menu;
+          console.log(res.data.menu, 'this is is x ===== 2222');
           let list2 = Object.keys(menus);
           let y = {};
           list2.map((val) => {
-            const inside_menu = Object.keys(res.data.menu.menu[val]);
+            const inside_menu = Object.keys(res.data.menu[val]);
 
             inside_menu.map((inside) => {
-              let x = res.data.menu.menu[val][inside].filter((val_data, i) => {
+              let x = res.data.menu[val][inside].filter((val_data, i) => {
                 return val_data.is_special === true;
               });
               if (x.length > 0) {
@@ -557,7 +558,7 @@ export const jointable_action = (code, qr_code, type) => {
             ...res.data,
             menu: {
               ...res.data.menu,
-              menu: { ...res.data.menu.menu, Special: y },
+              menu: { ...res.data.menu, Special: y },
             },
           };
           dispatch(handleLoader(false));
@@ -655,7 +656,7 @@ export const userReview_action = (file, pic) => {
     const token = cookie.get('token');
     fetch(
       Connection.getBaseUrl() +
-      `/reviews/${customer_id}/orders/${cookie.get('order_id')}`,
+        `/reviews/${customer_id}/orders/${cookie.get('order_id')}`,
       {
         method: 'POST',
         timeout: 1000 * 1 * 60,

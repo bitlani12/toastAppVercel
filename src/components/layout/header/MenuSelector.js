@@ -25,7 +25,7 @@ const MenuSelector = (props) => {
     'Food Menu',
     'Beverages',
     'Desert',
-    'Store'
+    'Store',
   ];
 
   function typeToName(type) {
@@ -60,7 +60,14 @@ const MenuSelector = (props) => {
     }
   }
   let list2 = Object.keys(props.menus);
-  const sortingarray = ['Special', 'food', 'beverages', 'desserts', 'drinks', 'store'];
+  const sortingarray = [
+    'Special',
+    'food',
+    'beverages',
+    'desserts',
+    'drinks',
+    'store',
+  ];
   /////////////////////////////////////////////////////
   let result = [];
   sortingarray.forEach(function (key) {
@@ -77,7 +84,7 @@ const MenuSelector = (props) => {
   list2 = result;
   // list2 = ['Special'].concat(list2);
   //////////////////////////
-
+  console.log(props.data, 'this is props.data');
   console.log(list2, 'this is list2');
 
   return (
@@ -100,7 +107,7 @@ const MenuSelector = (props) => {
           overflowX: 'scroll',
           flexWrap: 'nowrap',
           width: 'auto',
-          paddingRight: 20
+          paddingRight: 20,
         }}
         className="scrollbarxx"
       >
@@ -115,7 +122,7 @@ const MenuSelector = (props) => {
                 // padding: '0px 0px 7px 0px',
                 marginRight: 20,
                 fontWeight: 500,
-                paddingRight: `${i === list2.length - 1 ? "10px" : 0}`
+                paddingRight: `${i === list2.length - 1 ? '10px' : 0}`,
               }}
               className={`${state === i ? 'active' : 'unactive'}`}
               onClick={() => {

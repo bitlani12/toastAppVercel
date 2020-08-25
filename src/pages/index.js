@@ -37,12 +37,12 @@ class Cmp extends React.Component {
     const qr_code = Cookie.get('qr_code');
     const join_code = Cookie.get('join_code');
 
-    if (this.props.menu_data.menu === undefined) {
-      this.props.jointable_action(join_code, qr_code, 'home');
-    }
+    // if (this.props.menu_data.menu === undefined) {
+    //   this.props.jointable_action(join_code, qr_code, 'home');
+    // }
 
-    this.props.getTableCode_action(qr_code);
-    this.props.getBilling_action(o_id, c_id, token);
+    // this.props.getTableCode_action(qr_code);
+    // this.props.getBilling_action(o_id, c_id, token);
   }
   render() {
     return (
@@ -51,8 +51,8 @@ class Cmp extends React.Component {
         {this.props.loading && this.props.menu_data.menu === undefined ? (
           <div></div>
         ) : (
-            <FrontPage />
-          )}
+          <FrontPage />
+        )}
       </div>
     );
   }
