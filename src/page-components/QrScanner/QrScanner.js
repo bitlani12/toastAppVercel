@@ -68,6 +68,7 @@ class QrScanner extends Component {
       this.props.scanqr_action(data);
     }
   }
+
   handleError(err) {
     console.error(err);
   }
