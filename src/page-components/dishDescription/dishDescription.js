@@ -47,9 +47,9 @@ const DishDescription = React.memo((props) => {
             height={'46vh'}
             radiusNone={true}
           />
-          <FullCard style={{ position: 'relative' }}>
+          <FullCard style={{ position: 'relative', padding: 0 }}>
             <div
-              style={{ overflow: 'auto', height: '73vh', paddingBottom: 50 }}
+              style={{ overflow: 'auto', height: '56vh', paddingBottom: 50, padding: "5px 20px" }}
             >
               <div>
                 <FlexBetween>
@@ -71,7 +71,7 @@ const DishDescription = React.memo((props) => {
                     </TitleCenter>
                   </FlexRow>
                   <FlexRow onClick={(e) => props.handleToggle(e)}>
-                    <img src="/static/close-24px(2).svg" />
+                    <img src="/static/close-24px(2).svg" style={{ width: 25 }} />
                   </FlexRow>
                 </FlexBetween>
                 <div>

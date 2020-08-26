@@ -239,7 +239,7 @@ const FoodList = React.memo((props) => {
               ) : (
                     <Veg color="#be0000" />
                   )}
-              <div style={{ marginLeft: 8, fontWeight: 600, marginTop: -3 }}>
+              <div style={{ marginLeft: 8, fontWeight: 600, marginTop: -3 }} className="truncaa" >
                 {val_data.item_name}
               </div>
             </FlexRow>

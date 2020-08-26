@@ -16,6 +16,7 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from 'next/router';
 import { handlefilter } from './../../redux/actions/orderAction';
 import MaterialDrawer from './../../components/common/MaterialDrawer';
+import { handleLoader } from 'redux/actions/app';
 export async function getData() {
   try {
     const { data } = await simplyFetchFromGraph({
@@ -47,6 +48,7 @@ function FrontPage({
   handlefilter,
   filter,
   softReload,
+  handleLoader
 }) {
   // const inside_menu = Object.keys(props.menu_data.menu.menu[selected_menu]);
   const [refIndex, changerefIndex] = useState(0);
@@ -76,6 +78,13 @@ function FrontPage({
   const onchange_menu = (menu_type) => {
     changerefIndex(0);
     set_selected_menu(menu_type);
+    handleLoader(true)
+    // )
+    setTimeout(() => {
+      // dispatch(
+      handleLoader(false)
+      // )
+    }, 1000);
   };
 
   const inside_menu = Object.keys(menu_data.menu.menu[selected_menu]);
@@ -133,17 +142,17 @@ function FrontPage({
             {menus[selected_menu][val].map((val_data, i) => {
               return filter.filter_veg === true ? (
                 val_data.item_type === 'veg' &&
-                  (val_data.contains_egg === true ? (
-                    filter.contains_egg && (
-                      <MenuCard
-                        val_data={val_data}
-                        selected_menu={selected_menu}
-                        data={menu_data.menu}
-                        key={val_data.item_id}
-                        softReload={softReload}
-                      />
-                    )
-                  ) : (
+                (val_data.contains_egg === true ? (
+                  filter.contains_egg && (
+                    <MenuCard
+                      val_data={val_data}
+                      selected_menu={selected_menu}
+                      data={menu_data.menu}
+                      key={val_data.item_id}
+                      softReload={softReload}
+                    />
+                  )
+                ) : (
                     <MenuCard
                       val_data={val_data}
                       selected_menu={selected_menu}
@@ -153,14 +162,14 @@ function FrontPage({
                     />
                   ))
               ) : (
-                <MenuCard
-                  val_data={val_data}
-                  selected_menu={selected_menu}
-                  data={menu_data.menu}
-                  softReload={softReload}
-                  key={val_data.item_id}
-                />
-              );
+                  <MenuCard
+                    val_data={val_data}
+                    selected_menu={selected_menu}
+                    data={menu_data.menu}
+                    softReload={softReload}
+                    key={val_data.item_id}
+                  />
+                );
             })}
           </div>
         ))}
@@ -221,6 +230,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   handlefilter: bindActionCreators(handlefilter, dispatch),
+  handleLoader: (data) => dispatch(handleLoader(data))
 });
 export default connect(
   mapStateToProps,
