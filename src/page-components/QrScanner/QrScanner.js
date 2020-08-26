@@ -20,7 +20,6 @@ class QrScanner extends Component {
   }
   async componentDidMount() {
     this.generateToken()
-    const data = 'http://localhost:3000/view_catalogue?qr_code=WBR2f%2BgdUps3kFJ1E70I0J2PAoJFF1RzfCsrnE7PiVfucv%2BD5%2FywGco8YvWyQ4eJ%2F7QQwve9GU7deQqF7GgkkQ%3D%3D'
     // Router.replace(`${data}`)
 
     // let result = await import('react-qr-reader');

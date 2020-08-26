@@ -446,10 +446,10 @@ export const scanqr_action = (code) => {
         dispatch(handleLoader(false));
         // eslint-disable-line
         console.log('errorror', e);
-        toast.error('error', {
-          position: 'top-right',
-          autoClose: 3000,
-        });
+        // toast.error('error', {
+        //   position: 'top-right',
+        //   autoClose: 3000,
+        // });
       });
   };
   //    )
