@@ -68,9 +68,7 @@ class QrScanner extends Component {
     }
   }
 
-  handleError(err) {
-    console.error(err);
-  }
+ 
   render() {
     console.log(this.props.menu_data);
     const previewStyle = {

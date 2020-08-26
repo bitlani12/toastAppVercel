@@ -97,7 +97,7 @@ const DishDescription = React.memo((props) => {
                 </FlexRow>
               </FlexBetween>
               <hr className="line" />
-              <SubTitle>Available Sizes</SubTitle>
+              <SubTitle>Available Variants</SubTitle>
               {/* <p className="p">Select your preferred size</p> */}
               {selected_menu_data.item_price_details.map((val, i) => (
 
