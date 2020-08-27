@@ -55,9 +55,9 @@ const SelectedItem = React.memo((props) => {
           </div>
         }
       >
-        <div style={{ padding: 20, overflow: 'auto' }}>
+        {/* <div style={{ padding: 20, overflow: 'auto' }}>
           <ReviewPlaceOrder handleToggle={handleToggle} />
-        </div>
+        </div> */}
       </MaterialDrawer>
       {/* <BottomDrawer
         height="94%"

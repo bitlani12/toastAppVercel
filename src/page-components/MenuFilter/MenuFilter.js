@@ -51,11 +51,11 @@ const MenuFilter = React.memo((props) => {
   const childRef = useRef()
   // console.log(props.refIndex, "this is reff index")
   return (
-    <div className="p10">
+    <div >
       <MaterialDrawer
         title={
           <div
-            style={{ marginBottom: 60 }}
+
             onClick={handleToggle}
             height="auto"
           >

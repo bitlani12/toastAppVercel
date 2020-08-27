@@ -70,8 +70,8 @@ const DishDescription = React.memo((props) => {
                       {selected_menu_data.item_name}
                     </TitleCenter>
                   </FlexRow>
-                  <FlexRow onClick={(e) => props.handleToggle(e)}>
-                    <img src="/static/close-24px(2).svg" style={{ width: 25 }} />
+                  <FlexRow onClick={(e) => props.handleToggle(e)} style={{ width: 25 }}>
+                    <img src="/static/close-24px(2).svg" style={{ width: 25, position: "absolute", right: 10 }} />
                   </FlexRow>
                 </FlexBetween>
                 <div>
