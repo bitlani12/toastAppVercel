@@ -75,7 +75,7 @@ const DishDescription = React.memo((props) => {
                   </FlexRow>
                 </FlexBetween>
                 <div>
-                  <h5 style={{ color: '#999999', marginTop: -10, fontSize: 15 }} className="h">
+                  <h5 style={{ color: '#000000', marginTop: -10, fontSize: 15, fontWeight: 300, }} className="h">
                     {selected_menu_data.item_description}
                   </h5>
                 </div>
