@@ -98,7 +98,7 @@ const SpeacialMenuCard = React.memo((props) => {
   const dishdescription = (val_data) => {
     let c_id = Cookie.get('customer_id');
     let token = Cookie.get('token');
-    props.getItemReview_action(c_id, val_data.item_id, 0, 10, token);
+    // props.getItemReview_action(c_id, val_data.item_id, 0, 10, token);
     console.log('this is dish description +++');
     props.dish_description(val_data);
     console.log(val_data);

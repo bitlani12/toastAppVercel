@@ -21,10 +21,10 @@ const DishDescription = React.memo((props) => {
   const [review, setReview] = useState([]);
   console.log(props);
   useEffect(() => {
-    setReview([]);
+    // setReview([]);
   }, []);
   useEffect(() => {
-    setReview(get_item_review);
+    // setReview(get_item_review);
   }, [get_item_review]);
   const ImageSet = styled.div`
     background-image: url(${(props) => props.img});
