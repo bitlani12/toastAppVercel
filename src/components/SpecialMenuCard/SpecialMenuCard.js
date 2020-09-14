@@ -52,7 +52,7 @@ const SpeacialMenuCard = React.memo((props) => {
   }
 
   return (
-    cookie.get('qr_code') !== 'P5MFEYsbb0UoSHPhA5SxoGhIWMr69Ov61XVSkYoZxYJPw2NZKvTzhyYuoNLbN0Pc' ?
+    cookie.get('qr_code') === 'P5MFEYsbb0UoSHPhA5SxoGhIWMr69Ov61XVSkYoZxYJPw2NZKvTzhyYuoNLbN0Pc' ?
       // style={{ backgroundImage: 'url(`/static/CoverPage.jpg`)' }}
       props.i === 0 && <SetBackGroundSpecific className="setbackgroundspecific">
         <p> Reminiscent of a sun-bathed Greek island, overlooking the scenic Durgam
