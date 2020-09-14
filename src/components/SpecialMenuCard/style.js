@@ -83,3 +83,23 @@ export const FullWidthCard = styled.div`
   box-shadow: 0px 3px 6px #0000001a;
   padding: 10px;
 `;
+
+export const SetBackGroundSpecific = styled.div`
+position: relative; 
+height:auto;
+&:before {
+  content: "";
+  background-image:url('/static/CoverPage.jpg');
+  height:auto;
+  background-size: cover;
+      position: absolute;
+      top: 0px;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.1;
+}
+ 
+}
+`;

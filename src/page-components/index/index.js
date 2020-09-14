@@ -17,6 +17,7 @@ import { withRouter } from 'next/router';
 import { handlefilter } from './../../redux/actions/orderAction';
 import MaterialDrawer from './../../components/common/MaterialDrawer';
 import { handleLoader } from 'redux/actions/app';
+import cookie from 'js-cookie';
 export async function getData() {
   try {
     const { data } = await simplyFetchFromGraph({
@@ -97,7 +98,7 @@ function FrontPage({
       }, 10);
     }
   };
-
+  let indexx = 0
   return (
     <Layout>
       {/* <Header simple={simple} /> */}
@@ -109,6 +110,7 @@ function FrontPage({
       />
       <Outer
         selected_menu={selected_menu}
+        qr_code={cookie.get('qr_code')}
         style={{
           paddingBottom: '100px',
           marginBottom: selected_menu !== 'Special' ? -40 : 35,
@@ -117,62 +119,74 @@ function FrontPage({
           minHeight: '100vh',
         }}
       >
-        {inside_menu.map((val, i) => (
-          <div
-            style={{
-              background: selected_menu !== 'Special' ? 'lightgray' : '',
-              display: selected_menu !== 'Special' ? '' : 'contents',
-            }}
-          >
-            {' '}
-            {selected_menu !== 'Special' && (
-              <>
-                <div
-                  ref={(ref) => {
-                    myRef[i] = ref;
-                  }}
-                ></div>
-                <div className="sticky-header">
-                  <span className="sticky-span1"></span>
-                  <span className="sticky-span2">{val}</span>
-                  <span className="sticky-span3"></span>
-                </div>
-              </>
-            )}
-            {menus[selected_menu][val].map((val_data, i) => {
-              return filter.filter_veg === true ? (
-                val_data.item_type === 'veg' &&
-                (val_data.contains_egg === true ? (
-                  filter.contains_egg && (
-                    <MenuCard
-                      val_data={val_data}
-                      selected_menu={selected_menu}
-                      data={menu_data.menu}
-                      key={val_data.item_id}
-                      softReload={softReload}
-                    />
-                  )
+        {inside_menu.map((val, index) => {
+
+          return (
+
+            <div
+              style={{
+                background: selected_menu !== 'Special' ? 'lightgray' : '',
+                display: selected_menu !== 'Special' ? '' : 'contents',
+              }}
+            >
+              {' '}
+              {selected_menu !== 'Special' && (
+                <>
+                  <div
+                    ref={(ref) => {
+                      myRef[i] = ref;
+                    }}
+                  ></div>
+                  <div className="sticky-header">
+                    <span className="sticky-span1"></span>
+                    <span className="sticky-span2">{val}</span>
+                    <span className="sticky-span3"></span>
+                  </div>
+                </>
+              )}
+              {menus[selected_menu][val].map((val_data, i) => {
+                indexx = indexx + 1
+                console.log(indexx - 1, 'this is i =-')
+                return filter.filter_veg === true ? (
+                  val_data.item_type === 'veg' &&
+                  (val_data.contains_egg === true ? (
+                    filter.contains_egg && (
+                      <MenuCard
+                        val_data={val_data}
+                        selected_menu={selected_menu}
+                        data={menu_data.menu}
+                        key={val_data.item_id}
+                        softReload={softReload}
+                        i={indexx - 1}
+                      />
+                    )
+                  ) : (
+                      <MenuCard
+                        val_data={val_data}
+                        selected_menu={selected_menu}
+                        data={menu_data.menu}
+                        key={val_data.item_id}
+                        softReload={softReload}
+                        i={indexx - 1}
+                      />
+                    ))
                 ) : (
                     <MenuCard
                       val_data={val_data}
                       selected_menu={selected_menu}
                       data={menu_data.menu}
-                      key={val_data.item_id}
                       softReload={softReload}
+                      key={val_data.item_id}
+                      i={indexx - 1}
                     />
-                  ))
-              ) : (
-                  <MenuCard
-                    val_data={val_data}
-                    selected_menu={selected_menu}
-                    data={menu_data.menu}
-                    softReload={softReload}
-                    key={val_data.item_id}
-                  />
-                );
-            })}
-          </div>
-        ))}
+                  )
+              }
+
+              )
+              }
+            </div>
+          )
+        })}
       </Outer>
 
       <MenuFilter

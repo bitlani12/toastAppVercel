@@ -6,7 +6,7 @@ export const Outer = styled(O)`
   ${(props) =>
     props.selected_menu !== 'Special'
       ? null
-      : `
+      : props.qr_code !== 'P5MFEYsbb0UoSHPhA5SxoGhIWMr69Ov61XVSkYoZxYJPw2NZKvTzhyYuoNLbN0Pc' ? null : `
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       max-width: 1600px;

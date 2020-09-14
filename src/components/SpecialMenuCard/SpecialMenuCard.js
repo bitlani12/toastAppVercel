@@ -4,7 +4,7 @@ import React, {
   useRef,
   useImperativeHandle,
 } from 'react';
-import { CardLayout, Img } from './style';
+import { CardLayout, Img, SetBackGroundSpecific } from './style';
 import { Title } from 'components/grid/grid-item/styles';
 import ReviewPlaceOrder from '../ReviewPlaceOrder/ReviewPlaceOrder';
 import Grid from 'components/grid';
@@ -25,72 +25,9 @@ import DishDiscription from './../../page-components/dishDescription/dishDescrip
 import BottomDrawer from 'ui/BottomDrawer';
 import SetItemImage from '../common/SetItemImage';
 import MaterialDrawer from 'components/common/MaterialDrawer';
-// const testImage = (url) => {
-//   console.log(url, 'this is doneverror 2222');
-//   const imgPromise = new Promise(function imgPromise(resolve, reject) {
-//     const imgElement = new Image();
-//     imgElement.addEventListener('load', function imgOnLoad() {
-//       resolve(this);
-//       // set_imageLoad(true);
-//     });
-//     imgElement.addEventListener('error', function imgOnError() {
-//       reject();
-//       // set_imageLoad(true);
-//     });
-//     imgElement.src = url;
-//   });
-//   return imgPromise;
-// };
-// const imgsss = (props) => {
-//   let img;
-//   let load;
-//   (async () => {
-//     await testImage(props.img).then(
-//       function fulfilled(img) {
-//         load = true;
-//         return (img = `url(${img})`);
-//       },
-//       function rejected() {
-//         load = true;
-
-//         console.log('this is doneverror');
-//         return (img = `url('/static/001-happy-1.svg')`);
-//       }
-//     );
-//   })();
-//   // await
-//   console.log(img, 'this is done img');
-//   return img; //`url(${img})`;
-// };
-// const BackgroundImage = styled.div`
-//   background-image: ${(props) => imgsss(props)};
-//   height: 150px;
-//   /* background-position: center; */
-//   display: block;
-//   background-position: center center;
-//   margin: 0 auto;
-//   background-size: cover;
-//   border-top-left-radius: 8px;
-//   border-top-right-radius: 8px;
-//   //
-// `;
-// const BackgroundImageFood = styled.div`
-//   background-image: ${(props) => `url(${props.img})`};
-//   height: 100%;
-//   width: 100%;
-//   /* background-position: center; */
-//   display: block;
-//   background-position: center center;
-//   margin: 0 auto;
-//   background-size: cover;
-//   border-top-left-radius: 8px;
-//   border-bottom-left-radius: 8px;
-//   &:before {
-//     content: '';
-//     display: block;
-//   }
-// `;
+import cookie from 'js-cookie';
 const SpeacialMenuCard = React.memo((props) => {
+  const renderOnce = 1;
   console.log(props, 'this is props special menu card');
   // const { title } = props.val;
   const { val_data } = props;
@@ -113,70 +50,66 @@ const SpeacialMenuCard = React.memo((props) => {
       </div>
     );
   }
+
   return (
-    <div onClick={() => dishdescription(val_data)}>
-      <CardLayout>
-        <SetItemImage img={val_data.item_image_url} />
-        {/* <BackgroundImage img={val_data.item_image_url} /> */}
-        <div style={{ padding: 5 }} className="special-card">
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'baseline',
-            }}
-          >
-            <Title style={{ fontSize: 13, height: 35 }} className="truncaa" >
-              {val_data.item_name}
-            </Title>
-            {val_data.contains_egg === true ? (
-              <Veg color="#654321" />
-            ) : val_data.item_type === 'veg' ? (
-              <Veg color="#007436" />
-            ) : (
-                  <Veg color="#be0000" />
-                )}
-            {/* <div
-                  style={{
-                    border: 'solid #007436 1px',
-                    padding: '1.5px',
-                    flex: 'none',
-                    height: 'fit-content',
-                  }}
-                >
-                  <div
-                    style={{
-                      width: 8,
-                      height: 8,
-                      background: ' #007436 0% 0% no-repeat padding-box',
-                      borderRadius: 100,
-                    }}
-                  ></div>
-                </div> */}
+    cookie.get('qr_code') !== 'P5MFEYsbb0UoSHPhA5SxoGhIWMr69Ov61XVSkYoZxYJPw2NZKvTzhyYuoNLbN0Pc' ?
+      // style={{ backgroundImage: 'url(`/static/CoverPage.jpg`)' }}
+      props.i === 0 && <SetBackGroundSpecific className="setbackgroundspecific">
+        <p> Reminiscent of a sun-bathed Greek island, overlooking the scenic Durgam
+        Cheruvu Lake, Olive Bistro is where good people meet to celebrate good times
+        over delicious food, cocktails and wine for the last seven years in Hyderabad.
+      </p>
+        <p>
+          We re-open our doors with sparkling kitchens & strict hygiene protocols in
+          place. The fun hasn’t stopped, and neither has our commitment to innovating
+          with our offerings. It’s how we continuously bring our patrons a taste of the
+          finer things in life.
+      </p>
+        <p>
+          Our latest innovation presents itself in the form of a new menu by Chef Manu
+          Chandra, Chef Partner, Olive Bar & Kitchen that encompasses the abundant
+          flavours and aromas of the Mediterranean.
+      </p>
+        <p>
+          We hope you find our new menu as delightful and exciting as we do.
+          Sit back, take in the view and enjoy your Olive experience.
+      </p>
+      Cheers,
+      AD, Sabs & Shaaz</SetBackGroundSpecific> :
+      <div onClick={() => dishdescription(val_data)}>
+        <CardLayout>
+          <SetItemImage img={val_data.item_image_url} />
+          <div style={{ padding: 5 }} className="special-card">
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'baseline',
+              }}
+            >
+              <Title style={{ fontSize: 13, height: 35 }} className="truncaa" >
+                {val_data.item_name}
+              </Title>
+              {val_data.contains_egg === true ? (
+                <Veg color="#654321" />
+              ) : val_data.item_type === 'veg' ? (
+                <Veg color="#007436" />
+              ) : (
+                    <Veg color="#be0000" />
+                  )}
+            </div>
+            <div className="special-item">
+              <div style={{ minWidth: 35, }}>
+                ₹ {val_data.item_price_details[0].item_price}
+              </div>{' '}
+            </div>
           </div>
-          {/* <div
-                style={{
-                  marginTop: 15,
-                  display: 'flex',
-                  alignItems: 'center',
-                  height: 23,
-                }}
-              >
-                <img src="/static/001-happy-1.png" alt="Klarna logo" />
-                <small style={{ marginLeft: 10, fontSize: 12 }}>
-                  {val_data.reviews_count} reviews
-                </small>
-              </div> */}
-          <div className="special-item">
-            <div style={{ minWidth: 35, }}>
-              ₹ {val_data.item_price_details[0].item_price}
-            </div>{' '}
-            {/* <AddItem handleToggle={props.handleToggle} val_data={val_data} /> */}
-          </div>
-        </div>
-      </CardLayout>
-      <style>{`
+        </CardLayout>
+        <style>{`
+        
+     
+      
           .special-card{
             min-height: 90px; 
           }
@@ -202,9 +135,8 @@ const SpeacialMenuCard = React.memo((props) => {
             overflow: hidden;
             text-overflow: ellipsis;
           }
-      
         `}</style>
-    </div>
+      </div>
   );
 });
 
@@ -442,6 +374,7 @@ const MenuCard = React.memo((props) => {
           getItemReview_action={props.getItemReview_action}
           dish_description={props.dish_description}
           handleToggle={handleToggle}
+          i={props.i}
         />
       }
     >
