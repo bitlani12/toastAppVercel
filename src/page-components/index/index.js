@@ -119,7 +119,7 @@ function FrontPage({
           minHeight: '100vh',
         }}
       >
-        {inside_menu.map((val, index) => {
+        {inside_menu.map((val, i) => {
 
           return (
 
